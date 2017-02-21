@@ -61,13 +61,13 @@ galaxy_info:
   #  - 9
   - name: MacOSX
     versions:
-   # - all
-    - 10.10
-    - 10.11
-    - 10.12
-    - 10.7
-    - 10.8
-    - 10.9
+    - all
+  #   - 10.10
+  #   - 10.11
+  #   - 10.12
+  #   - 10.7
+  #   - 10.8
+  #   - 10.9
   #- name: Synology
   #  versions:
   #  - all
