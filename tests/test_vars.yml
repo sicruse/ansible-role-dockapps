@@ -1,7 +1,7 @@
 ---
-# vars file for dockapps
+# vars file for testing dockapps
 dockapps_apps:
-  # Install & place on dock
+    # Install & place on dock
     - { cask: google-chrome,
         description: "A fast, free web browser. One browser for your computer, phone and tablet",
         path: "/Applications/Google Chrome.app" }
