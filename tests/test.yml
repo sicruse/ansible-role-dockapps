@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - ../..
+
+# To test use this command from the root of the module
+# ansible-playbook -i "localhost," -c local tests/test.yml

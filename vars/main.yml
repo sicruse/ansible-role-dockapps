@@ -1,0 +1,20 @@
+---
+# vars file for dockapps
+dockapps_apps:
+  # Install & place on dock
+    - { cask: google-chrome,
+        description: "A fast, free web browser. One browser for your computer, phone and tablet",
+        path: "/Applications/Google Chrome.app" }
+
+    # Place on dock, assumes already installed
+    - { description: "iTerm2 brings the terminal into the modern age with features you never knew you always wanted.",
+        path: "/Applications/iTerm.app" }
+
+    # Install only, don't place on dock
+    - { cask: colorpicker-skalacolor,
+        description: "An extraordinary color picker for designers and developers" }
+        
+dockapps_folders:
+    - { path: "~/Downloads",  view: fan   }
+    - { path: "~/Documents",  view: grid  }
+
