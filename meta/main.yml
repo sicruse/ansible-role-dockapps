@@ -208,9 +208,9 @@ galaxy_info:
   #  - Any
 
   galaxy_tags:
-    - Mac
-    - MacOSX
-    - OSX
+    - mac
+    - macosx
+    - osx
     - apps
     - dock
     - dockutil

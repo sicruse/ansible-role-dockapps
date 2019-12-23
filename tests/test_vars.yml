@@ -3,7 +3,7 @@
 dockapps_apps:
     # Install & place on dock
     - { path: "/Applications/Google Chrome.app" }
-        
+
 dockapps_folders:
-    - { path: "~/Downloads",  view: fan   }
-    - { path: "~/Documents",  view: grid  }
+    - { path: "~/Downloads",  view: fan }
+    - { path: "~/Documents",  view: grid }
