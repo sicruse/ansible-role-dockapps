@@ -6,16 +6,16 @@
       state: present
 
   - name: Remove existing items from Dock
-    shell: dockutil --remove '{{ item }}'
+    command: dockutil --remove '{{ item }}'
     ignore_errors: true
     with_lines: dockutil --list | cut -f1
 
   - name: Add Apps to the Dock
-    shell: dockutil --add '{{ item }}'
+    command: dockutil --add '{{ item }}'
     when: dockapps_apps is defined
-    with_items: '{{ dockapps_apps }}'
+    loop: '{{ dockapps_apps }}'
 
   - name: Add Folders to dock
-    shell: dockutil --find '{{ item.path }}' || dockutil --add '{{ item.path }}' --view {{ item.view | default("fan")}} --display folder
+    command: dockutil --add '{{ item.path }}' --view {{ item.view | default("fan") }} --display folder # --replacing {{ item.path | basename }}
     when: dockapps_folders is defined
-    with_items: '{{ dockapps_folders }}'
+    loop: '{{ dockapps_folders }}'
