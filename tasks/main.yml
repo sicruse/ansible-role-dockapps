@@ -1,21 +1,9 @@
 ---
 # tasks file for dockapps
   - name: Install Dock Util for dock bar management
-    homebrew:
-      name: '{{ item.name | default(item) }}'
-      state: '{{ item.state | default("present") }}'
-    with_items:
-      - dockutil
-
-  - name: Install Dock Apps
-    homebrew_cask:
-      name: '{{ item.cask }}'
-      state: '{{ item.state | default("present") }}'
-    when: dockapps_apps is defined and item.cask is defined
-    with_items:
-      - '{{ dockapps_apps }}'
-    loop_control:
-      label: '{{ item.cask | default("Install by other means") }} - {{ item.description }}'
+    package:
+      name: dockutil
+      state: present
 
   - name: Remove existing items from Dock
     shell: dockutil --remove '{{ item }}'
@@ -23,13 +11,11 @@
     with_lines: dockutil --list | cut -f1
 
   - name: Add Apps to the Dock
-    shell: dockutil --add '{{ item.path }}'
-    when: dockapps_apps is defined and item.path is defined
+    shell: dockutil --add '{{ item }}'
+    when: dockapps_apps is defined
     with_items: '{{ dockapps_apps }}'
-    loop_control:
-      label: '{{ item.path | default(item.cask) }} - {{ item.description }}'
 
   - name: Add Folders to dock
-    shell: dockutil --find '{{ item.path }}' || dockutil --add '{{ item.path }}' --view {{ item.view }} --display folder
+    shell: dockutil --find '{{ item.path }}' || dockutil --add '{{ item.path }}' --view {{ item.view | default("fan")}} --display folder
     when: dockapps_folders is defined
     with_items: '{{ dockapps_folders }}'

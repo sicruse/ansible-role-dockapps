@@ -212,8 +212,6 @@ galaxy_info:
     - MacOSX
     - OSX
     - apps
-    - installer
-    - homebrew
     - dock
     - dockutil
     # List tags for your role here, one per line. A tag is
