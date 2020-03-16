@@ -26,13 +26,26 @@ Role Variables
 
 ~~~~
 dockapps_apps:
-	- < path to app package for presentation on the dock >
+    - < path to app package for presentation on the dock >
 ~~~~
 
 e.g.
 ~~~~
-	# Install & place on dock
+dockapps_apps:
     - "/Applications/Google Chrome.app"
+~~~~
+
+**dockapps_apps_spacing:** provides a list of apps that should have a space placed after them. Each item describes the application **name** defined as follows:
+
+~~~~
+dockapps_apps_spacing:
+    - < name of app which should have a space after it >
+~~~~
+
+e.g.
+~~~~
+dockapps_apps_spacing:
+    - "Google Chrome"
 ~~~~
 
 **dockapps_folders:** provides a list of folders, including the preferred view mode, to include on the dock. e.g.
