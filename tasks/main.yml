@@ -5,17 +5,30 @@
       name: dockutil
       state: present
 
+# note that it is important to tell dockutil not to restart the dock as doing so can lead to interesting errors due to the iterative nature of these commands
   - name: Remove existing items from Dock
-    command: dockutil --remove '{{ item }}'
+    command: dockutil --remove '{{ item }}' --no-restart
     ignore_errors: true
     with_lines: dockutil --list | cut -f1
 
+  - name: Remove all spacing from the dock
+    command: dockutil --remove spacer-tiles --no-restart
+    ignore_errors: true
+
   - name: Add Apps to the Dock
-    command: dockutil --add '{{ item }}'
+    command: dockutil --add '{{ item }}' --no-restart
     when: dockapps_apps is defined
     loop: '{{ dockapps_apps }}'
 
+  - name: Add Spaces to the Dock
+    command: dockutil --add '' --type spacer --section apps --after '{{ item }}' --no-restart
+    when: dockapps_apps_spacing is defined
+    loop: '{{ dockapps_apps_spacing }}'
+
   - name: Add Folders to dock
-    command: dockutil --add '{{ item.path }}' --view {{ item.view | default("fan") }} --display folder # --replacing {{ item.path | basename }}
+    command: dockutil --add '{{ item.path }}' --view {{ item.view | default("fan") }} --display folder --no-restart # --replacing {{ item.path | basename }}
     when: dockapps_folders is defined
     loop: '{{ dockapps_folders }}'
+
+  - name: Restart dock to pick-up all changes
+    command: /usr/bin/killall Dock >/dev/null 2>&1
